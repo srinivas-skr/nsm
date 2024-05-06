@@ -39,7 +39,7 @@ void decrypt(char ciphertext[], char key[]) {
 }
 
 int main() {
-    char plaintext[] = "THE WUICK BROWN FOX JUMPS OVER THE LAZY DOG";
+    char plaintext[] = "THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG";
     char key[] = "QWERTYUIOPASDFGHJKLZXCVBNM";
 
     printf("Plaintext: %s\n", plaintext);
