@@ -1,56 +1,50 @@
 #include<stdio.h>
 #include<stdlib.h>
-#include<math.h>
+#include<openssl/aes.h>
+#include<string.h>
 
-int q, a; // q and alpha value
+unsigned char aes_key[] = "0123456789abcdef";
 
-int mod_exp(int base, int exp, int modulus) {
-    int result = 1;
-    while (exp > 0) {
-        if (exp % 2 == 1) {
-            result = (result * base) % modulus;
-        }
-        base = (base * base) % modulus;
-        exp /= 2;
-    }
-    return result;
+
+void aes_encrypt(unsigned char *plaintext, unsigned char *ciphertext) {
+    AES_KEY key;
+    AES_set_encrypt_key(aes_key, 128, &key);
+    AES_encrypt(plaintext, ciphertext, &key);
 }
 
-void diffie_hellman(int private_key, int *public_key) {
-    *public_key = mod_exp(a, private_key, q);
+
+void aes_decrypt(unsigned char *ciphertext, unsigned char *decryptedtext) {
+    AES_KEY key;
+    AES_set_decrypt_key(aes_key, 128, &key);
+    AES_decrypt(ciphertext, decryptedtext, &key);
 }
 
 int main() {
-    int Xa, Xb; // private keys
-    int Ya, Yb; // public keys
-    int Ka, Kb; // session keys
+    unsigned char plaintext[100];
+    unsigned char ciphertext[AES_BLOCK_SIZE];
+    unsigned char decryptedtext[AES_BLOCK_SIZE];
     
-    printf("\nEnter q value (prime number): ");
-    scanf("%d", &q);
     
-    printf("\nEnter alpha value (primitive root of q): ");
-    scanf("%d", &a);
+    printf("Enter the plaintext: ");
+    fgets(plaintext, sizeof(plaintext), stdin);
     
-    printf("\nEnter private key of A: ");
-    scanf("%d", &Xa);
+    plaintext[strcspn(plaintext, "\n")] = '\0';
     
-    printf("\nEnter private key of B: ");
-    scanf("%d", &Xb);
+    aes_encrypt(plaintext, ciphertext);
     
-    diffie_hellman(Xa, &Ya);
-    diffie_hellman(Xb, &Yb);
+    aes_decrypt(ciphertext, decryptedtext);
     
-    printf("\nPublic Key of A: %d", Ya);
-    printf("\nPublic Key of B: %d", Yb);
-    
-    Ka = mod_exp(Yb, Xa, q);
-    Kb = mod_exp(Ya, Xb, q);
-    
-    printf("\nKey of A: %d", Ka);
-    printf("\nKey of B: %d", Kb);
+    printf("Original message: %s\n", plaintext);
+    printf("Encrypted message: ");
+    for (int i = 0; i < AES_BLOCK_SIZE; i++) {
+        printf("%02x", ciphertext[i]);
+    }
+    printf("\n");
+    printf("Decrypted message: %s\n", decryptedtext);
     
     return 0;
 }
+
 
 
 ////
