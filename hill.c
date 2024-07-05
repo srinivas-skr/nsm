@@ -83,10 +83,68 @@ int main(){
 
 
 
-///HILL CIPHER PROGRAM 
+/*
 
 Save file  hill.c
 
 gcc -o hill hill.c -lm
 
-./hill///
+./hill*/
+
+
+
+    /*
+    #include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+
+#define max 100
+
+
+void hillcipher(char *msg, int key[max][max], int ks){
+    int sum = 0;
+    int i, j, k;
+    int len = strlen(msg);
+    char enc[max];
+    while(len % ks != 0){
+        msg[len++] = 'X';
+    }
+    msg[len] = '\0';
+    for(i = 0; i < len; i += ks){
+        for(j = 0; j < ks; j++){
+            sum = 0;
+            for(k = 0; k < ks; k++){
+                sum += key[j][k] * (msg[i+k] - 'A');
+            }
+            enc[i+j] = (sum % 26) + 'A';
+        }
+        
+    }
+    
+    printf("Encrypted msg: ");
+    for(i = 0; i < len; i++){
+        printf("%c", enc[i]);
+    }
+    
+}
+
+
+int main(){
+    int ks;
+    int key[max][max];
+    printf("Enter key size: ");
+    scanf("%d", &ks);
+    printf("Enter keys: ");
+    for(int i = 0; i < ks; i++){
+        for(int j = 0; j < ks; j++){
+            scanf("%d", &key[i][j]);
+        }
+    }
+    char msg[1000];
+    printf("Enter message: ");
+    scanf("%s", msg);
+
+    
+    hillcipher(msg, key, ks);
+    return 0;
+} */
