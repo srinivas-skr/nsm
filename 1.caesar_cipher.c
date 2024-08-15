@@ -11,20 +11,20 @@ void caesar(char text[], int shift) {
 
 int main() {
     char message[100];
-    int key;
+    int shift;
 
-    // Input message and key from the user
+    // Input message and shift from the user
     printf("Enter message: ");
     fgets(message, sizeof(message), stdin);
-    printf("Enter key: ");
-    scanf("%d", &key);
+    printf("Enter shift: ");
+    scanf("%d", &shift);
 
     // Encrypt the message
-    caesar(message, key);
+    caesar(message, shift);
     printf("Encrypted message: %s\n", message);
 
     // Decrypt the message
-    caesar(message, -key);
+    caesar(message, -shift);
     printf("Decrypted message: %s\n", message);
     return 0;
 }
