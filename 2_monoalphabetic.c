@@ -29,31 +29,27 @@ int main()
 {
     char plaintext[100];
     char key[30];
-    // Input for plaintext
     printf("Enter plaintext: ");
     fgets(plaintext, sizeof(plaintext), stdin);
 
-    // Input for key
     printf("Enter key (26 uppercase letters): ");
     fgets(key, sizeof(key), stdin);
 
-    // Encryption
-    char ciphertext[strlen(plaintext) + 1];
+    char ciphertext[strlen(plaintext) + 1];   // Encryption
     int i;
     for (i = 0; plaintext[i] != '\0'; i++) 
     {
         ciphertext[i] = encrypt(plaintext[i], key);
     }
-    ciphertext[i] = '\0'; // Null terminate the ciphertext string
+    ciphertext[i] = '\0'; // Null terminate 
     printf("Ciphertext: %s\n", ciphertext);
 
-    // Decryption
-    char decrypted_text[strlen(ciphertext) + 1];
+    char decrypted_text[strlen(ciphertext) + 1];  // Decryption
     for (i = 0; ciphertext[i] != '\0'; i++) 
     {
     decrypted_text[i] = decrypt(ciphertext[i], key);
     }
-    decrypted_text[i] = '\0'; // Null terminate the decrypted text string
+    decrypted_text[i] = '\0'; // Null terminate 
     printf("Decrypted Text: %s\n", decrypted_text);
     return 0;
 }
@@ -62,9 +58,6 @@ int main()
 plaintext - THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG
 key -QWERTYUIOPASDFGHJKLZXCVBNM
 */
-
-
-
 
 /* Input for ciphertext to decrypt
     printf("Enter ciphertext to decrypt: ");
