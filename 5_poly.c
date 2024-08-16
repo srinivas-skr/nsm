@@ -5,24 +5,29 @@
 void transform(char *msg, const char *key, int mode) {
     int key_len = strlen(key);
     
-    for(int i =0 ,j =0 ; msg[i];i++){
-        if(isalpha(msg[i])){
-            char offset = isupper(msg[i]) ?'A':'a';
-            msg[i] = ((msg[i]-offset) + (mode? key[j%key_len] - offset : 'A'- key[j%key_len] + offset )) %26 + offset;
+    for(int i = 0, j = 0; msg[i]; i++) {
+        if(isalpha(msg[i])) {
+            char offset = islower(msg[i]) ? 'a' : 'A';
+            int key_shift = key[j % key_len] - offset;
+            
+            if (!mode) key_shift = -key_shift;  // decryption Invert shift
+            msg[i] = (msg[i] - offset + key_shift + 26) % 26 + offset;
             j++;
         }
     }
 }
 
 int main() {
-    char msg[] = "wearediscoveredsaveyourself";
+    char msg[256];
     char key[256];
 
-    printf("Enter a key: ");
-    fgets(key, sizeof(key), stdin);
-    key[strcspn(key, "\n")] = '\0';  // Remove newline character
+    printf("Enter message: ");
+    fgets(msg, sizeof(msg), stdin);
+    msg[strcspn(msg, "\n")] = '\0';  // Remove newline character
 
-    printf("Original: %s\n", msg);
+    printf("Enter key: ");
+    fgets(key, sizeof(key), stdin);
+     // Remove newline character
 
     transform(msg, key, 1);  // Encrypt
     printf("Encrypted: %s\n", msg);
