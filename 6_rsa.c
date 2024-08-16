@@ -99,3 +99,10 @@ int main() {
     decrypt(encrypted, len, d, n);
     return 0;
 }
+/*
+Enter the value of p: 11
+Enter the value of q: 7
+Enter the value of e: 7
+
+Enter the message to encrypt: hello
+ */
