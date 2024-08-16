@@ -47,7 +47,16 @@ int main() {
     Kb = mod_exp(Ya, Xb, q);
     
     printf("\nKey of A: %d", Ka);
-    printf("\nKey of B: %d", Kb);
-    
+    printf("\nKey of B: %d", Kb); 
     return 0;
 }
+
+/* output
+Enter q value (prime number): 33
+Enter alpha value (primitive root of q): 8
+Enter private key of A: 3
+Enter private key of B: 2
+
+Public Key of A: 17
+Public Key of B: 31
+Key of A: 25 */
