@@ -87,3 +87,6 @@ int main() {
     encrypt(message, table);
     return 0;
 }
+/*Key text: Monarchy
+Plain text: instruments
+Cipher text: gatlmzclrqt */
