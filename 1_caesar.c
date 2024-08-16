@@ -12,8 +12,7 @@ void caesar(char text[], int shift) {
 int main() {
     char message[100];
     int shift;
-
-    // Input message and shift from the user
+    
     printf("Enter message: ");
     fgets(message, sizeof(message), stdin);
     printf("Enter shift: ");
