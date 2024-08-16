@@ -5,13 +5,11 @@
 
 unsigned char aes_key[] = "0123456789abcdef";
 
-
 void aes_encrypt(unsigned char *plaintext, unsigned char *ciphertext) {
     AES_KEY key;
     AES_set_encrypt_key(aes_key, 128, &key);
     AES_encrypt(plaintext, ciphertext, &key);
 }
-
 
 void aes_decrypt(unsigned char *ciphertext, unsigned char *decryptedtext) {
     AES_KEY key;
@@ -39,26 +37,20 @@ int main() {
     for (int i = 0; i < AES_BLOCK_SIZE; i++) {
         printf("%02x", ciphertext[i]);
     }
+    
     printf("\n");
     printf("Decrypted message: %s\n", decryptedtext);
-    
     return 0;
 }
 
-
-
-////
-
-AES PROGRAM
-
+///
+AES PROGRAM OUPUT
 
 save file   aes.c
 
 sudo apt update
 sudo apt install libssl-dev
 
-
 gcc aes.c -o aes -lssl -lcrypto
-
 
 ./aes  ///
