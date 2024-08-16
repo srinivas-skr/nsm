@@ -10,7 +10,7 @@ void transform(char *msg, const char *key, int mode) {
             char offset = islower(msg[i]) ? 'a' : 'A';
             int key_shift = key[j % key_len] - offset;
             
-            if (!mode) key_shift = -key_shift;  // decryption Invert shift
+            if (!mode) key_shift = -key_shift;  // DECRYPTION 
             msg[i] = (msg[i] - offset + key_shift + 26) % 26 + offset;
             j++;
         }
@@ -27,14 +27,13 @@ int main() {
 
     printf("Enter key: ");
     fgets(key, sizeof(key), stdin);
-     // Remove newline character
+    key[strcspn(key, "\n")] = '\0';  // Remove newline character
 
     transform(msg, key, 1);  // Encrypt
     printf("Encrypted: %s\n", msg);
 
     transform(msg, key, 0);  // Decrypt
     printf("Decrypted: %s\n", msg);
-
     return 0;
 }
 /* 
