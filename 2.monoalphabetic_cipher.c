@@ -1,54 +1,64 @@
 #include <stdio.h>
+#include <ctype.h>
+#include <string.h>
 
-void encrypt(char text[], char key[]) {
+char encrypt(char ch, char *key) 
+{
+    if (isalpha(ch)) 
+    {
+        int index = toupper(ch) - 'A';
+        return key[index];
+    }
+    return ch; // Non-alphabetic characters remain unchanged
+}
+
+char decrypt(char ch, char *key) 
+{
     int i;
-    for (i = 0; text[i] != '\0'; i++) {
-        if (text[i] >= 'a' && text[i] <= 'z') {
-            printf("%c", key[text[i] - 'a']);
-        } else if (text[i] >= 'A' && text[i] <= 'Z') {
-            printf("%c", key[text[i] - 'A']);
-        } else {
-            printf("%c", text[i]);
+    for (i = 0; i < 26; i++) 
+    {
+        if (key[i] == ch) 
+        {
+            return 'A' + i;
         }
     }
-    printf("\n");
+    return ch; // Non-alphabetic characters remain unchanged
 }
 
-void decrypt(char ciphertext[], char key[]) {
-    int i, j;
-    for (i = 0; ciphertext[i] != '\0'; i++) {
-        if (ciphertext[i] >= 'a' && ciphertext[i] <= 'z') {
-            for (j = 0; key[j] != '\0'; j++) {
-                if (ciphertext[i] == key[j] + 'a' - 'A') {
-                    printf("%c", 'a' + j);
-                    break;
-                }
-            }
-        } else if (ciphertext[i] >= 'A' && ciphertext[i] <= 'Z') {
-            for (j = 0; key[j] != '\0'; j++) {
-                if (ciphertext[i] == key[j]) {
-                    printf("%c", 'A' + j);
-                    break;
-                }
-            }
-        } else {
-            printf("%c", ciphertext[i]);
-        }
+int main() 
+{
+    char text[100];
+    char key[30];
+
+    // Input for text
+    printf("Enter text: ");
+    fgets(text, sizeof(text), stdin);
+
+    // Input for key
+    printf("Enter key (26 uppercase letters): ");
+    fgets(key, sizeof(key), stdin);
+
+    // Encryption
+    char ciphertext[strlen(text) + 1];
+    int i;
+    for (i = 0; text[i] != '\0'; i++) 
+    {
+        ciphertext[i] = encrypt(text[i], key);
     }
-    printf("\n");
-}
-
-int main() {
-    char text[] = "THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG";
-    char key[] = "QWERTYUIOPASDFGHJKLZXCVBNM";
-
-    printf("Text: %s\n", text);
-    printf("Encrypted: ");
-    encrypt(text, key);
-
-    char ciphertext[] = "ZIT JXOEA WKGVF YGB PXDHL GCTK ZIT SQMN RGU";
+    ciphertext[i] = '\0'; // Null terminate the ciphertext string
     printf("Ciphertext: %s\n", ciphertext);
-    printf("Decrypted: ");
-    decrypt(ciphertext, key);
+
+    // Input for ciphertext to decrypt
+    printf("Enter ciphertext to decrypt: ");
+    fgets(ciphertext, sizeof(ciphertext), stdin);
+
+    // Decryption
+    char decrypted_text[strlen(ciphertext) + 1];
+    for (i = 0; ciphertext[i] != '\0'; i++) 
+    {
+        decrypted_text[i] = decrypt(ciphertext[i], key);
+    }
+    decrypted_text[i] = '\0'; // Null terminate the decrypted text string
+    printf("Decrypted Text: %s\n", decrypted_text);
     return 0;
 }
