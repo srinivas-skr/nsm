@@ -43,8 +43,7 @@ int main() {
     return 0;
 }
 
-///
-AES PROGRAM OUPUT
+/// AES PROGRAM STEPS
 
 save file   aes.c
 
@@ -54,3 +53,6 @@ sudo apt install libssl-dev
 gcc aes.c -o aes -lssl -lcrypto
 
 ./aes  ///
+
+/*OUTPUT
+Enter the plaintext: welcome to ise  */
