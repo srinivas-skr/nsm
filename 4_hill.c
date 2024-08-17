@@ -50,8 +50,7 @@ int main() {
     encrypt(message, keyMatrix, size);
     return 0;
 }
-
-/*
+/* OUTPUT
 Enter the size of the key matrix (max 10): 2
 Enter the elements of the key matrix:
 1 2
