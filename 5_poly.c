@@ -36,7 +36,8 @@ int main() {
     printf("Decrypted: %s\n", msg);
     return 0;
 }
-/* 
+
+/* OUTPUT 
 msg = We are Discovered Save Yourself
 key = deceptive 
     */
