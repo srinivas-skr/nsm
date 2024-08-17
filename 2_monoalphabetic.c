@@ -54,7 +54,7 @@ int main()
     return 0;
 }
 
-/*
+/* OUTPUT 
 plaintext - THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG
 key -QWERTYUIOPASDFGHJKLZXCVBNM
 */
