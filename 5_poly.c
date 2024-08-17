@@ -38,6 +38,6 @@ int main() {
 }
 
 /* OUTPUT 
-msg = We are Discovered Save Yourself
+msg = WeareDiscoveredSaveYourself
 key = deceptive 
     */
