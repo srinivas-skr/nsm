@@ -41,6 +41,7 @@ int main()
     {
         ciphertext[i] = encrypt(plaintext[i], key);
     }
+    
     ciphertext[i] = '\0'; // Null terminate 
     printf("Ciphertext: %s\n", ciphertext);
 
@@ -49,11 +50,11 @@ int main()
     {
     decrypted_text[i] = decrypt(ciphertext[i], key);
     }
+    
     decrypted_text[i] = '\0'; // Null terminate 
     printf("Decrypted Text: %s\n", decrypted_text);
     return 0;
 }
-
 /* OUTPUT 
 plaintext - THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG
 key -QWERTYUIOPASDFGHJKLZXCVBNM
@@ -61,6 +62,6 @@ key -QWERTYUIOPASDFGHJKLZXCVBNM
 
 
 
-/* Input for ciphertext to decrypt
+/* Separate Ciphertext 
     printf("Enter ciphertext to decrypt: ");
     fgets(ciphertext, sizeof(ciphertext), stdin); */
