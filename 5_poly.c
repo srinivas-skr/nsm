@@ -4,13 +4,16 @@
 
 void transform(char *msg, const char *key, int mode) {
     int key_len = strlen(key);
-    
-    for(int i = 0, j = 0; msg[i]; i++) {
-        if(isalpha(msg[i])) {
+
+    for (int i = 0, j = 0; msg[i]; i++) {
+        
+        if (isalpha(msg[i])) 
+        {
             char offset = islower(msg[i]) ? 'a' : 'A';
-            int key_shift = tolower(key[j % key_len]) - 'a';
             
-            if (!mode) key_shift = -key_shift;  // DECRYPTION 
+            int key_shift = (islower(msg[i]) ? tolower(key[j % key_len]) : toupper(key[j % key_len])) - offset;
+
+            if (!mode) key_shift = -key_shift;  // DECRYPTION
             msg[i] = (msg[i] - offset + key_shift + 26) % 26 + offset;
             j++;
         }
@@ -36,8 +39,6 @@ int main() {
     printf("Decrypted: %s\n", msg);
     return 0;
 }
-
-/* OUTPUT 
-msg = wearediscoveredsaveyourself
-key = deceptive 
-    */
+/* OUTPTUT
+Enter message: We Are Discovered Save Yourself
+Enter key: deceptive  */
