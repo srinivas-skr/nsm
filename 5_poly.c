@@ -8,7 +8,7 @@ void transform(char *msg, const char *key, int mode) {
     for(int i = 0, j = 0; msg[i]; i++) {
         if(isalpha(msg[i])) {
             char offset = islower(msg[i]) ? 'a' : 'A';
-            int key_shift = key[j % key_len] - offset;
+            int key_shift = tolower(key[j % key_len]) - 'a';
             
             if (!mode) key_shift = -key_shift;  // DECRYPTION 
             msg[i] = (msg[i] - offset + key_shift + 26) % 26 + offset;
@@ -38,6 +38,6 @@ int main() {
 }
 
 /* OUTPUT 
-msg = WeareDiscoveredSaveYourself
+msg = wearediscoveredsaveyourself
 key = deceptive 
     */
