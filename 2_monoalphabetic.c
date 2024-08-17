@@ -59,6 +59,8 @@ plaintext - THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG
 key -QWERTYUIOPASDFGHJKLZXCVBNM
 */
 
+
+
 /* Input for ciphertext to decrypt
     printf("Enter ciphertext to decrypt: ");
     fgets(ciphertext, sizeof(ciphertext), stdin); */
