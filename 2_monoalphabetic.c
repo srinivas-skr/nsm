@@ -27,8 +27,8 @@ char decrypt(char ch, char *key)
 
 int main() 
 {
-    char plaintext[100];
-    char key[30];
+    char plaintext[256];
+    char key[256];
     printf("Enter plaintext: ");
     fgets(plaintext, sizeof(plaintext), stdin);
 
